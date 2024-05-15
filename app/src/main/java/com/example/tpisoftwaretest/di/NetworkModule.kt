@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://www.travel.taipei/open-api/swagger/ui/index#/"
+    private const val BASE_URL = "https://www.travel.taipei/open-api/"
 
 //    @Singleton
 //    @Provides
