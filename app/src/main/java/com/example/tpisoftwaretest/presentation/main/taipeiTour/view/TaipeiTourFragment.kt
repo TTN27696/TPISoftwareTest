@@ -115,7 +115,7 @@ class TaipeiTourFragment : Fragment() {
     private fun openDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         builder
-            .setTitle("I am the title")
+            .setTitle("Switch language")
             .setItems(
                 arrayOf("zh-tw", "zh-cn", "en", "ja", "ko", "es", "id", "th", "vi")
             ) { dialog, which ->
