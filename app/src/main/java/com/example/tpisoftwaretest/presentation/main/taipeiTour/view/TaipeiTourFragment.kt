@@ -46,34 +46,48 @@ class TaipeiTourFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
+        setupRV()
+        loadPlaces()
+    }
+
+    private fun setupRV() {
+        with(binding.recyclerPlaces) {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = taipeiTourAdapter
+        }
+    }
+
+    private fun setupToolbar() {
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+    }
+
+    private fun loadPlaces() {
         with(binding) {
-            (activity as AppCompatActivity).setSupportActionBar(toolbar)
-            toolbar.title = "This is TaipeiTourFragment"
-            recyclerPlaces.layoutManager = LinearLayoutManager(requireContext())
-            recyclerPlaces.adapter = taipeiTourAdapter
-            mainViewModel.fetchPlaces("vi").observe(viewLifecycleOwner) {
+            mainViewModel.fetchPlaces().observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.SUCCESS -> {
-                        //progressBar.visibility = View.GONE
-                        Log.d("AAAA","SUCCESS")
+                        progressBar.visibility = View.GONE
                         it.data?.let { placesDTO -> taipeiTourAdapter.updatePlaces(placesDTO.data.mapToPlaces()) }
                         recyclerPlaces.visibility = View.VISIBLE
                     }
 
                     Status.LOADING -> {
-                        Log.d("AAAA","LOADING")
-                        //progressBar.visibility = View.VISIBLE
+                        progressBar.visibility = View.VISIBLE
                         recyclerPlaces.visibility = View.GONE
                     }
 
                     Status.ERROR -> {
-                        Log.d("AAAA","ERROR")
                         //Handle Error
-                        //progressBar.visibility = View.GONE
+                        progressBar.visibility = View.GONE
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
                 }
             }
         }
+    }
+
+    private fun updateLang(lang: String) {
+        mainViewModel.lang = lang
     }
 }
