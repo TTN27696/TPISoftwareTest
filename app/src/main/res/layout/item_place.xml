@@ -3,10 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="place"
+            type="com.example.tpisoftwaretest.data.model.entity.Place" />
+    </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
+        android:id="@+id/card_place"
         android:layout_marginTop="24dp"
         app:cardCornerRadius="16dp">
 
@@ -21,30 +28,29 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                style="@style/TextTitleItemPlace"
+                android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@id/image_arrow"
                 app:layout_constraintStart_toEndOf="@id/image_place"
                 app:layout_constraintTop_toTopOf="@id/image_place"
+                android:text="@{place.name}"
                 tools:text="This is title" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_des"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="8dp"
+                style="@style/TextDesItemPlace"
+                android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/grey"
-                android:textSize="14sp"
+                android:text="@{place.introduction}"
                 app:layout_constraintBottom_toBottomOf="@id/image_place"
                 app:layout_constraintEnd_toStartOf="@id/image_arrow"
                 app:layout_constraintStart_toEndOf="@id/image_place"

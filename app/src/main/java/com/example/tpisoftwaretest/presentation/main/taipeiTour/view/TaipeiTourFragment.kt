@@ -10,12 +10,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tpisoftwaretest.R
+import com.example.tpisoftwaretest.data.model.entity.Place
 import com.example.tpisoftwaretest.databinding.FragmentTaipeiTourBinding
+import com.example.tpisoftwaretest.presentation.main.taipeiTour.adapter.TaipeiTourAdapter
 
 class TaipeiTourFragment : Fragment() {
 
     private lateinit var binding: FragmentTaipeiTourBinding
+
+    private val taipeiTourAdapter by lazy {
+        TaipeiTourAdapter(
+            places = arrayListOf(),
+            navigateToDetail = {
+
+            }
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +43,29 @@ class TaipeiTourFragment : Fragment() {
 //        binding.buttonChangeFrag.setOnClickListener {
 //            findNavController().navigate(R.id.action_taipeiTourFragment_to_detailFragment)
 //        }
-        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = "This is TaipeiTourFragment"
+        with(binding) {
+            (activity as AppCompatActivity).setSupportActionBar(toolbar)
+            toolbar.title = "This is TaipeiTourFragment"
+            recyclerPlaces.layoutManager = LinearLayoutManager(requireContext())
+            recyclerPlaces.adapter = taipeiTourAdapter
+
+            taipeiTourAdapter.updatePlaces(
+                arrayListOf<Place>().apply {
+                    for (i in 0..9) {
+                        add(
+                            Place(
+                                id = i,
+                                name = "Place $i",
+                                introduction = "This is place $i",
+                                openTime = "$i am",
+                                address = "This is $i address",
+                                url = "",
+                                images = emptyList()
+                            )
+                        )
+                    }
+                }
+            )
+        }
     }
 }
