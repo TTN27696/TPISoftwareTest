@@ -19,12 +19,6 @@ object NetworkModule {
 
     private const val BASE_URL = "https://www.travel.taipei/open-api/"
 
-//    @Singleton
-//    @Provides
-//    fun providesBaseUrl(): String {
-//        return "https://5e510330f2c0d300147c034c.mockapi.io/"
-//    }
-
     @Singleton
     @Provides
     fun providesLoggingInterceptor(): HttpLoggingInterceptor {
