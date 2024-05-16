@@ -13,13 +13,7 @@ class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
 
-    var lang: String = "zh-cn"
-        set(value) {
-            field = value
-            fetchPlaces()
-        }
-
-    fun fetchPlaces() = liveData(Dispatchers.IO) {
+    fun fetchPlaces(lang: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
             emit(Resource.success(data = mainRepository.getPlaces(lang = lang)))

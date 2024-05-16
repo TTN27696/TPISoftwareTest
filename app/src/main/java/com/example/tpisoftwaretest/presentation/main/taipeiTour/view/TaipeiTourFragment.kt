@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -54,7 +55,7 @@ class TaipeiTourFragment : Fragment() {
         setupMenu()
         setupToolbar()
         setupRV()
-        loadPlaces()
+        loadPlaces("zh-tw")
     }
 
     private fun setupMenu() {
@@ -66,6 +67,7 @@ class TaipeiTourFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when(menuItem.itemId){
                     R.id.item_lang -> {
+                        openDialog()
                         true
                     }
                     else -> false
@@ -85,9 +87,9 @@ class TaipeiTourFragment : Fragment() {
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
     }
 
-    private fun loadPlaces() {
+    private fun loadPlaces(lang: String) {
         with(binding) {
-            mainViewModel.fetchPlaces().observe(viewLifecycleOwner) {
+            mainViewModel.fetchPlaces(lang = lang).observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.SUCCESS -> {
                         progressBar.visibility = View.GONE
@@ -109,7 +111,30 @@ class TaipeiTourFragment : Fragment() {
         }
     }
 
-    private fun updateLang(lang: String) {
-        mainViewModel.lang = lang
+    private fun openDialog() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        builder
+            .setTitle("I am the title")
+            .setItems(
+                arrayOf("zh-tw", "zh-cn", "en", "ja", "ko", "es", "id", "th", "vi")
+            ) { dialog, which ->
+                loadPlaces(
+                    lang = when (which) {
+                        0 -> "zh-tw"
+                        1 -> "zh-cn"
+                        2 -> "en"
+                        3 -> "ja"
+                        4 -> "ko"
+                        5 -> "es"
+                        6 -> "id"
+                        7 -> "th"
+                        8 -> "vi"
+                        else -> "zh-tw"
+                    }
+                )
+            }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 }
