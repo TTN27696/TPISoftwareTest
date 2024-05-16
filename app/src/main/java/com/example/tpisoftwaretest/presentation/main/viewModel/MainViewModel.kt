@@ -6,9 +6,10 @@ import com.example.tpisoftwaretest.data.repository.MainRepository
 import com.example.tpisoftwaretest.utility.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel constructor(
+class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
 
