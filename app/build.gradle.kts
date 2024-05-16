@@ -74,6 +74,7 @@ dependencies {
     kapt(libs.hilt.compiler.kotlin)
 
     implementation(libs.glide)
+    implementation(libs.webview)
 }
 
 kapt {

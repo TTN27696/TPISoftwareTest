@@ -19,7 +19,7 @@ hilt = "2.48"
 fragmentKtx = "1.7.1"
 hiltCompiler = "1.2.0"
 glide = "4.16.0"
-kotlinPlugin = "1.8.10"
+webview = "1.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +44,7 @@ hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.re
 fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx"}
 hilt-compiler-kotlin = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler"}
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide"}
+webview = { module = "androidx.webkit:webkit", version.ref = "webview"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -51,5 +52,5 @@ jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "k
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 androidx-navigation-safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "kotlinPlugin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "kotlin" }
 
