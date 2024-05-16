@@ -56,7 +56,7 @@ class TaipeiTourFragment : Fragment() {
         setupMenu()
         setupToolbar()
         setupRV()
-        loadPlaces("zh-tw")
+        loadPlaces(mainViewModel.currentLang)
     }
 
     private fun setupMenu() {
