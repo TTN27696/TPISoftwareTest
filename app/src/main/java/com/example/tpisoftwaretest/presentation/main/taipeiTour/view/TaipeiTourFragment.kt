@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -29,5 +31,7 @@ class TaipeiTourFragment : Fragment() {
 //        binding.buttonChangeFrag.setOnClickListener {
 //            findNavController().navigate(R.id.action_taipeiTourFragment_to_detailFragment)
 //        }
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        binding.toolbar.title = "This is TaipeiTourFragment"
     }
 }
