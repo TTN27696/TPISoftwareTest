@@ -1,11 +1,17 @@
 package com.example.tpisoftwaretest.presentation.main.detail.view
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.method.LinkMovementMethod
+import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.example.tpisoftwaretest.R
 import com.example.tpisoftwaretest.data.model.entity.Place
 import com.example.tpisoftwaretest.databinding.FragmentPlaceDetailBinding
+import com.example.tpisoftwaretest.utility.setTextHighLight
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -26,7 +33,6 @@ class DetailFragment : Fragment() {
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    // Handle the back button event
                     findNavController().popBackStack(R.id.taipeiTourFragment, true)
                 }
             }
@@ -68,7 +74,11 @@ class DetailFragment : Fragment() {
             }
             textTitle.text = place.name
             textContent.text = place.textContentDetail()
-            textUrl.text = place.url
+            textUrl.setTextHighLight(place.url) {
+                Log.d("AAAA","Open web view")
+            }
         }
     }
+
+
 }
