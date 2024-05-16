@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/taipeiTourFragment">
 
+    <fragment
+        android:id="@+id/taipeiTourFragment"
+        android:name="com.example.tpisoftwaretest.presentation.main.taipeiTour.view.TaipeiTourFragment"
+        android:label="TaipeiTourFragment" >
+        <action
+            android:id="@+id/action_taipeiTourFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.tpisoftwaretest.presentation.main.detail.view.DetailFragment"
+        android:label="DetailFragment" />
 </navigation>

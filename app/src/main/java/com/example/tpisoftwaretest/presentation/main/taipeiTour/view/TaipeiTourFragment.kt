@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.tpisoftwaretest.R
+import com.example.tpisoftwaretest.databinding.FragmentTaipeiTourBinding
 
 class TaipeiTourFragment : Fragment() {
 
-    private lateinit var binding: ViewDataBinding
+    private lateinit var binding: FragmentTaipeiTourBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,6 +26,8 @@ class TaipeiTourFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+//        binding.buttonChangeFrag.setOnClickListener {
+//            findNavController().navigate(R.id.action_taipeiTourFragment_to_detailFragment)
+//        }
     }
 }
