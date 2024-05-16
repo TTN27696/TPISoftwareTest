@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.tpisoftwaretest.R
 import com.example.tpisoftwaretest.data.model.entity.Place
 import com.example.tpisoftwaretest.databinding.ItemPlaceBinding
 
@@ -58,6 +60,14 @@ class TaipeiTourAdapter(
         fun bindItem(item: Place) {
             with(binding) {
                 place = item
+                if (item.images.isNotEmpty()) {
+                    Glide.with(binding.root.context)
+                        .load(item.images[0].src)
+                        .centerCrop()
+                        .placeholder(R.drawable.ic_loading)
+                        .error(R.drawable.ic_loading)
+                        .into(imagePlace)
+                }
                 executePendingBindings()
             }
         }

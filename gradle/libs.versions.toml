@@ -18,6 +18,7 @@ lifecycleLiveData = "2.8.0"
 hilt = "2.48"
 fragmentKtx = "1.7.1"
 hiltCompiler = "1.2.0"
+glide = "4.16.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +42,7 @@ hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt"}
 fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx"}
 hilt-compiler-kotlin = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler"}
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

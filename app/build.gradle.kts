@@ -71,6 +71,8 @@ dependencies {
     implementation(libs.fragment.ktx)
     kapt(libs.hilt.compiler.kotlin)
 
+    implementation(libs.glide)
+
 }
 
 kapt {
