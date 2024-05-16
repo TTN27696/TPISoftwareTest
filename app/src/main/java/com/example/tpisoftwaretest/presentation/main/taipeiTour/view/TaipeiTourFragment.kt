@@ -1,15 +1,20 @@
 package com.example.tpisoftwaretest.presentation.main.taipeiTour.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tpisoftwaretest.R
@@ -46,9 +51,27 @@ class TaipeiTourFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupMenu()
         setupToolbar()
         setupRV()
         loadPlaces()
+    }
+
+    private fun setupMenu() {
+        (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_switch_lang, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when(menuItem.itemId){
+                    R.id.item_lang -> {
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun setupRV() {
@@ -78,7 +101,6 @@ class TaipeiTourFragment : Fragment() {
                     }
 
                     Status.ERROR -> {
-                        //Handle Error
                         progressBar.visibility = View.GONE
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
