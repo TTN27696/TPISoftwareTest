@@ -15,5 +15,11 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.tpisoftwaretest.presentation.main.detail.view.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment">
+        <argument
+            android:name="TaskItem"
+            app:argType="com.example.tpisoftwaretest.data.model.entity.Place"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

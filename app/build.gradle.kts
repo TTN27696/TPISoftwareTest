@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.androidx.navigation.safeargs)
 }
 
 android {
@@ -72,7 +74,6 @@ dependencies {
     kapt(libs.hilt.compiler.kotlin)
 
     implementation(libs.glide)
-
 }
 
 kapt {

@@ -36,7 +36,8 @@ class TaipeiTourFragment : Fragment() {
         TaipeiTourAdapter(
             places = arrayListOf(),
             navigateToDetail = {
-                findNavController().navigate(R.id.action_taipeiTourFragment_to_detailFragment)
+                val action = TaipeiTourFragmentDirections.actionTaipeiTourFragmentToDetailFragment().setTaskItem(it)
+                findNavController().navigate(action)
             }
         )
     }

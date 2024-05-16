@@ -1,6 +1,7 @@
 package com.example.tpisoftwaretest.presentation.main.detail.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.example.tpisoftwaretest.R
+import com.example.tpisoftwaretest.data.model.entity.Place
 import com.example.tpisoftwaretest.databinding.FragmentPlaceDetailBinding
+import com.example.tpisoftwaretest.presentation.main.viewModel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentPlaceDetailBinding
@@ -27,6 +34,28 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = "This is DetailFragment"
+        arguments?.let {
+            val data = DetailFragmentArgs.fromBundle(it).taskItem
+            if (data != null) {
+                loadData(data)
+            }
+        }
+    }
+
+    private fun loadData(place: Place) {
+        with(binding) {
+            toolbar.title = place.name
+                if (place.images.isNotEmpty()) {
+                Glide.with(binding.root.context)
+                    .load(place.images[0].src)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_loading)
+                    .error(R.drawable.ic_loading)
+                    .into(imageDetail)
+            }
+            textTitle.text = place.name
+            textContent.text = place.textContentDetail()
+            textUrl.text = place.url
+        }
     }
 }
